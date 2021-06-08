@@ -16,8 +16,7 @@ use sys_info::*;
 use colour::{ blue_ln, blue, dark_yellow, dark_red, cyan, green, white };
 use terminal_size::{Width, Height, terminal_size};
 
-fn pad(ps: u16) {
-  let pad = " ".repeat(ps.into());
+fn pad(pad: &str) {
   print!("{}", pad);
 }
 
@@ -45,16 +44,19 @@ fn empty_line() {
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-  let mut ps = 0;
+  let mut temp_string: String = String::new();
+  let mut ps: &str = "";
   let size = terminal_size();
   if let Some((Width(w), Height(_))) = size {
     let temp: f32 = (((w as f32 / TAB_WIDTH) - (MOTD_WIDTH / TAB_WIDTH)) / 4.0).ceil() * TAB_WIDTH;
-    ps = temp as u16;
-    println!("PAD: {} {:?}", temp, ps);
+    let pst = temp as u16;
+    temp_string.push_str(" ".repeat(pst.into()).as_str());
+    ps = temp_string.as_str();
   } else {
       println!("Unable to get terminal size");
   }
 
+  
   let public_ip = match reqwest::blocking::get("https://api.kuuwang.com/ip") {
     Ok(mut res) => {
       let mut body = String::new();
@@ -66,6 +68,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     },
     Err(_) => String::from("ERROR"),
   };
+
+  let boot_time = boottime().unwrap();
+  let load = loadavg().unwrap();
+  let mem = mem_info().unwrap();
+  let disk = disk_info().unwrap();
 
   println!("\n\n");
  
@@ -109,8 +116,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
   pad(ps);
   {
-    let t = boottime().unwrap();
-    let timestamp = t.tv_sec;
+    let timestamp = boot_time.tv_sec;
 
     let naive = NaiveDateTime::from_timestamp(timestamp, 0);
 
@@ -144,7 +150,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
   pad(ps);
   {
-    let load = loadavg().unwrap();
     blue!("||\t");
     dark_yellow!("LOAD AVG\t:\t");
     if load.one > 1.0 {
@@ -174,7 +179,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
   pad(ps);
   empty_line();
 
-  let mem = mem_info().unwrap();
+  
 
   pad(ps);
   {
@@ -216,8 +221,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
   pad(ps);
   empty_line();
-
-  let disk = disk_info().unwrap();
 
   pad(ps);
   {
