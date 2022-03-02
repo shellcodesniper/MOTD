@@ -57,14 +57,22 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
   }
 
   
-  let public_ip = match reqwest::blocking::get("https://api.kuuwang.com/ip") {
+  let public_ip = match reqwest::blocking::get("https://api.bdev.io/ip") {
     Ok(mut res) => {
       let mut body = String::new();
       let status = res.read_to_string(&mut body).is_ok();
       if status == false {
         body.push_str("ERROR");
       }
-      body
+
+      let split = body.split("data\":").clone();
+      //let vec = split.collect::<Vec<&str>>();
+      let vec: Vec<&str> = split.collect();
+      if vec.len() > 0 {
+        String::from(vec[1].replace('"', "").replace('}', ""))
+      } else {
+        body.clone()
+      }
     },
     Err(_) => String::from("ERROR"),
   };
