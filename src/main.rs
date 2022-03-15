@@ -70,7 +70,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
   let size = terminal_size();
   if let Some((Width(w), Height(_))) = size {
     let temp: f32 = (((w as f32) / 2.0 - (MOTD_WIDTH / 2.0))).ceil();
-    println!("temp: {}", temp);
     let pst = temp as u16;
     temp_string.push_str(" ".repeat(pst.into()).as_str());
     ps = temp_string.as_str();
