@@ -10,7 +10,7 @@ use colour::dark_grey;
 use std::net;
 use std::io::{ Read };
 use sys_info::*;
-use colour::{ blue_ln, blue, dark_yellow, dark_red, cyan, green, white, grey };
+use colour::{ blue_ln, blue, dark_yellow, dark_red, cyan, green, white };
 use terminal_size::{Width, Height, terminal_size};
 
 use interfaces::{
