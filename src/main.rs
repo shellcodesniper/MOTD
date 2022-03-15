@@ -198,9 +198,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
   }
 
   pad(ps);
-  empty_line();
-
-  pad(ps);
   title("SYSTEM INFO");
 
   pad(ps);
