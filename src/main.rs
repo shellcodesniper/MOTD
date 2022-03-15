@@ -239,24 +239,24 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
   {
     blue!("||\t\t");
     dark_yellow!("LOAD AVG\t:\t");
-    if load.one > 1.0 {
+    if load.one > 2.5 {
       dark_red!("{:.1}", load.one);
     } else {
-      dark_yellow!("{:.1}", load.one);
+      green!("{:.1}", load.one);
     }
     cyan!("/1M ");
 
-    if load.five > 1.0 {
+    if load.five > 4.0 {
       dark_red!("{:.1}", load.five);
     } else {
-      dark_yellow!("{:.1}", load.five);
+      green!("{:.1}", load.five);
     }
     cyan!("/5M ");
     
-    if load.fifteen > 1.0 {
+    if load.fifteen > 5.0 {
       dark_red!("{:.1}", load.fifteen);
     } else {
-      dark_yellow!("{:.1}", load.fifteen);
+      green!("{:.1}", load.fifteen);
     }
     cyan!("/15M\t");
     green!("[LOW IS BETTER]");
