@@ -7,7 +7,6 @@ extern crate interfaces;
 
 use chrono::prelude::*;
 use colour::dark_grey;
-use std::iter;
 use std::net;
 use std::io::{ Read };
 use sys_info::*;
@@ -15,11 +14,10 @@ use colour::{ blue_ln, blue, dark_yellow, dark_red, cyan, green, white, grey };
 use terminal_size::{Width, Height, terminal_size};
 
 use interfaces::{
-    flags::{self, InterfaceFlags},
+    flags::{InterfaceFlags},
     Interface, Kind,
 };
 
-const TAB_WIDTH: f32 = 8.0;
 // ? TAB SIZE, 8을 기준으로 맞춰진 상태라 8 권장.
 const MOTD_WIDTH: f32 = 98.0;
 // ? MOTD 총 길이 ( MOTD 가로 글자수만 포함하면됨 <계산결과 64> ( TAB 8 개))
