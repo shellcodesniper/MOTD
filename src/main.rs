@@ -223,7 +223,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
   {
     blue!("||\t\t");
     dark_yellow!("CPU INFO\t:\t");
-    cyan!("{} CORE / {} MHZ", cpu_num().unwrap(), cpu_speed().unwrap());
+    cyan!("{} CORE / {} MHZ", cpu_num().unwrap(), cpu_speed().unwrap_or(0));
     blue_ln!("\t\t\t\t||");
   }
   
