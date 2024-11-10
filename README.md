@@ -7,11 +7,11 @@
 - plz install 'RUST'
 - JUST TYPE : `./bin/build_release.sh` 
 - TYPE THIS !:
-  - `sudo cp ./target/release/motd_kuuwange /etc/` 
-  - `sudo chmod +x /etc/motd_kuuwange`
+  - `sudo cp ./target/release/pretty-motd /etc/` 
+  - `sudo chmod +x /etc/pretty-motd`
 - If YOU USE ZSH :
-  - `echo "/etc/motd_kuuwange" >> ~/.zshrc`
+  - `echo "/etc/pretty-motd " >> ~/.zshrc`
 - IF YOU USE BASH:
-  - `echo "/etc/motd_kuuwange" >> ~/.bashrc`
+  - `echo "/etc/pretty-motd " >> ~/.bashrc`
 - DONE!, ENJOY~
 

@@ -5,6 +5,8 @@ authors = ["shellcodesniper <shellcodesniper@icloud.com>"]
 description = "A Simple & Pretty MOTD wrotten in rust"
 license ="MIT"
 edition = "2021"
+repository = "https://github.com/shellcodesniper/MOTD"
+readme = "README.md"
 
 [[bin]]
 name = "pretty-motd"
