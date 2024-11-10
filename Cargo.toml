@@ -1,8 +1,15 @@
 [package]
-name = "motd_kuuwange"
-version = "0.1.0"
+name = "pretty-motd"
+version = "1.0.0"
 authors = ["shellcodesniper <shellcodesniper@icloud.com>"]
+description = "A Simple & Pretty MOTD wrotten in rust"
+license ="MIT"
 edition = "2021"
+
+[[bin]]
+name = "pretty-motd"
+test = false
+bench = false
 
 [profile.release]
 opt-level = 's'
@@ -13,15 +20,10 @@ panic = 'unwind'
 incremental = false
 codegen-units = 2
 
-[[bin]]
-name = "motd_kuuwange"
-test = false
-bench = false
-
 [dependencies]
 sys-info = "0.9.1"
-colour = "0.6.0"
-reqwest = { version = "0.11.9", features = ["blocking", "json"] }
-chrono = "0.4.19"
-terminal_size = "0.1.17"
+colour = "2.1.0"
+reqwest = { version = "0.12.9", features = ["blocking", "json"] }
+chrono = "0.4.38"
+terminal_size = "0.4.0"
 interfaces = "0"
